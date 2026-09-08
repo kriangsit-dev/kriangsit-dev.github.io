@@ -1,0 +1,18 @@
+---
+import { SITE } from '../config';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 dark:border-slate-800">
+  <div
+    class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-3 px-5 py-8 text-sm text-slate-500 sm:flex-row dark:text-slate-400"
+  >
+    <p>© {year} {SITE.name}. {t.footer.rights}</p>
+    <p>{t.footer.builtWith}</p>
+  </div>
+</footer>

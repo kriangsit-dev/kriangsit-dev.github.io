@@ -1,0 +1,142 @@
+---
+import Section from './Section.astro';
+import { SITE } from '../config';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<Section id="contact" title={t.contact.title}>
+  <p class="max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
+    {t.contact.intro}
+  </p>
+
+  <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">
+    {t.contact.orEmail}{' '}
+    <a
+      href={`mailto:${SITE.email}`}
+      class="font-medium text-brand-600 hover:underline dark:text-brand-400"
+    >
+      {SITE.email}
+    </a>
+  </p>
+
+  <form id="contact-form" class="mt-8 max-w-xl space-y-4">
+    <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+    <input type="hidden" name="subject" value="New message from your portfolio site" />
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="hidden"
+      style="display:none"
+      tabindex="-1"
+      autocomplete="off"
+    />
+
+    <div>
+      <label for="name" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+        {t.contact.nameLabel}
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+      />
+    </div>
+
+    <div>
+      <label
+        for="email"
+        class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300"
+      >
+        {t.contact.emailLabel}
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+      />
+    </div>
+
+    <div>
+      <label
+        for="message"
+        class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300"
+      >
+        {t.contact.messageLabel}
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        required
+        class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      id="contact-submit"
+      data-idle={t.contact.send}
+      data-sending={t.contact.sending}
+      class="inline-flex items-center rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-brand-600 disabled:opacity-60"
+    >
+      {t.contact.send}
+    </button>
+
+    <p
+      id="contact-status"
+      class="hidden text-sm"
+      role="status"
+      aria-live="polite"
+      data-success={t.contact.success}
+      data-error={t.contact.error}
+    >
+    </p>
+  </form>
+</Section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const btn = document.getElementById('contact-submit') as HTMLButtonElement | null;
+  const status = document.getElementById('contact-status') as HTMLParagraphElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!btn || !status) return;
+
+    const idle = btn.dataset.idle ?? 'Send';
+    btn.disabled = true;
+    btn.textContent = btn.dataset.sending ?? 'Sending…';
+    status.className = 'hidden text-sm';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        status.textContent = status.dataset.success ?? 'Sent.';
+        status.className = 'text-sm text-emerald-600 dark:text-emerald-400';
+        form.reset();
+      } else {
+        throw new Error(data.message ?? 'failed');
+      }
+    } catch (err) {
+      status.textContent = status.dataset.error ?? 'Something went wrong.';
+      status.className = 'text-sm text-red-600 dark:text-red-400';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = idle;
+    }
+  });
+</script>

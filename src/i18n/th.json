@@ -1,0 +1,175 @@
+{
+  "lang": "th",
+  "cvPath": "/cv/Kriangsit_Pranee_CV_TH.pdf",
+  "meta": {
+    "title": "เกรียงสิทธิ์ ปราณี — Full Stack Java Developer",
+    "description": "Full Stack Java Developer พัฒนาระบบธนาคารและระบบโรงพยาบาลด้วย Java, Spring MVC, IBM Db2 และ Docker ทำงานอยู่ที่กรุงเทพฯ"
+  },
+  "nav": {
+    "about": "เกี่ยวกับผม",
+    "experience": "ประสบการณ์",
+    "projects": "ผลงาน",
+    "skills": "ทักษะ",
+    "contact": "ติดต่อ",
+    "cv": "ดาวน์โหลด CV",
+    "switchLang": "EN",
+    "switchLangHref": "/",
+    "theme": "สลับธีม"
+  },
+  "hero": {
+    "hello": "สวัสดีครับ ผมชื่อ",
+    "name": "Kriangsit Pranee",
+    "role": "Full Stack Java Developer",
+    "tagline": "พัฒนาและดูแลระบบที่ใช้งานจริงในสองโดเมนที่มีข้อกำหนดเข้มงวด — ระบบธนาคารสำหรับลูกค้าองค์กร และระบบเวชระเบียนของโรงพยาบาล",
+    "location": "กรุงเทพมหานคร",
+    "available": "พร้อมเริ่มงานทันที",
+    "ctaProjects": "ดูผลงาน",
+    "ctaContact": "ติดต่อผม"
+  },
+  "about": {
+    "title": "เกี่ยวกับผม",
+    "body": [
+      "นักพัฒนา Full Stack ที่ถนัดฝั่ง backend และเป็นบัณฑิตวิทยาการคอมพิวเตอร์ ในปี 2026 ผมพัฒนาฟีเจอร์ให้ระบบ Corporate Internet Banking ของธนาคารออมสิน (GSB) ด้วย Java และ Spring MVC ครอบคลุมทั้งฝั่งลูกค้าองค์กรและฝั่งเจ้าหน้าที่ธนาคาร",
+      "ก่อนหน้านั้นระหว่างฝึกงาน ผมพัฒนาระบบบันทึกการระงับความรู้สึกก่อน/หลังผ่าตัด (eMR) แบบครบวงจรและนำขึ้นใช้งานจริง ปัจจุบันใช้อยู่ในแผนกวิสัญญี โรงพยาบาลพระปกเกล้า แทนการบันทึกด้วยกระดาษ",
+      "ผมให้ความสำคัญกับการเขียนโค้ดที่สะอาดและเชื่อถือได้เมื่อขึ้นใช้งานจริง ตอนนี้กำลังมองหางานตำแหน่ง Java / Backend หรือ Full Stack Developer"
+    ]
+  },
+  "experience": {
+    "title": "ประสบการณ์ทำงาน",
+    "stackLabel": "เทคโนโลยี",
+    "items": [
+      {
+        "role": "Full Stack Java Developer",
+        "company": "IMAXX Solutions Co., Ltd.",
+        "context": "ระบบ Corporate Internet Banking (CIB) ธนาคารออมสิน — ปฏิบัติงานผ่าน MFEC (System Integrator)",
+        "period": "ม.ค. 2026 – ส.ค. 2026",
+        "location": "กรุงเทพมหานคร · On-site",
+        "bullets": [
+          "พัฒนาต่อยอดกระบวนการ maker–approver: ให้ Maker เลือกผู้อนุมัติได้ครอบคลุมทุกบริการทางการเงิน และให้ Authorizer ทำ Roll Over ธุรกรรมที่ตั้งเวลาล่วงหน้าได้ภายในวัน Effective Date ผ่าน Quartz scheduler",
+          "พัฒนาฟีเจอร์ยกเลิกรายการธุรกรรม รองรับการยกเลิกทุกประเภทบริการที่ยังรออนุมัติ หรืออนุมัติแล้วแต่ยังไม่ถึงรอบประมวลผล",
+          "ฝั่งเจ้าหน้าที่ธนาคาร: พัฒนาการกำหนดวงเงินอนุมัติแบบแบ่งช่วง (Range) และหน้าลงทะเบียนรองรับกิจการเจ้าของคนเดียว (Single User)",
+          "เขียนและปรับแต่ง SQL รวมถึงจัดการข้อมูลบนฐานข้อมูล IBM Db2 ผ่าน DBeaver",
+          "Deploy ไฟล์ WAR ขึ้น JBoss/Tomcat และดู log แก้ปัญหาผ่าน MobaXterm ด้วย Log4j2",
+          "ทำงานร่วมทีม Agile 7 คน ผ่าน GitHub code review และร่วมวิเคราะห์ requirement ทดสอบ และดูแลระบบ"
+        ],
+        "stack": "Java · Spring MVC · JDBC · IBM Db2 · JSP · Quartz · GitHub · Eclipse IDE · DBeaver · MobaXterm"
+      },
+      {
+        "role": "นักศึกษาฝึกงาน — Software Developer",
+        "company": "โรงพยาบาลพระปกเกล้า",
+        "context": "ระบบบันทึกการระงับความรู้สึกก่อน/หลังผ่าตัด (Pre/Post Anesthetic eMR)",
+        "period": "พ.ค. 2025 – ก.ย. 2025",
+        "location": "จันทบุรี · On-site",
+        "bullets": [
+          "พัฒนาและนำระบบเว็บขึ้นใช้งานจริง แทนการบันทึกประเมินผู้ป่วยก่อน/หลังการระงับความรู้สึกแบบกระดาษ ปัจจุบันใช้งานจริงในแผนกวิสัญญี",
+          "เชื่อมต่อระบบกับระบบสารสนเทศโรงพยาบาล (HIS) ผ่าน REST endpoint 7 จุด โดยใช้ server-side proxy ที่แนบ authentication และซ่อน endpoint ปลายทางจากฝั่ง browser",
+          "ทำระบบยืนยันตัวตนด้วย JWT ผ่าน HttpOnly cookies พร้อมขั้นตอนอนุมัติผู้ใช้ใหม่โดยแอดมิน และควบคุมสิทธิ์ตามบทบาท",
+          "ออกแบบ schema ฐานข้อมูล MySQL ที่เก็บข้อมูลเป็น 2 ชั้น — JSON ดิบสำหรับแก้ไข และข้อความที่จัดรูปแบบแล้วสำหรับพิมพ์และส่งข้อมูล",
+          "จัดระบบเป็นคอนเทนเนอร์ด้วย Docker Compose เพื่อการ deploy ที่ทำซ้ำได้"
+        ],
+        "stack": "PHP 8 · JavaScript · Tailwind CSS · Bootstrap · MySQL 8 · REST API · JWT · Docker Compose"
+      }
+    ]
+  },
+  "education": {
+    "title": "การศึกษา",
+    "degree": "วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์",
+    "school": "มหาวิทยาลัยราชภัฏรำไพพรรณี",
+    "year": "2025"
+  },
+  "projects": {
+    "title": "ผลงาน",
+    "confidentialNote": "ระบบของลูกค้า — ไม่สามารถเปิดเผยซอร์สโค้ดและภาพหน้าจอต่อสาธารณะได้",
+    "viewCode": "ดูโค้ด",
+    "labels": {
+      "context": "บริบทและโจทย์",
+      "approach": "สิ่งที่พัฒนา",
+      "decision": "การตัดสินใจสำคัญ",
+      "outcome": "ผลลัพธ์"
+    },
+    "items": [
+      {
+        "name": "GSB Corporate Internet Banking",
+        "context": "ระบบ Corporate Internet Banking ที่ใช้งานจริงของธนาคารระดับประเทศ ทุกธุรกรรมทางการเงินต้องผ่านกระบวนการ maker–approver ที่มีกฎการอนุมัติต่างกันในแต่ละบริการ ผมรับผิดชอบ change request ทั้งฝั่งลูกค้าองค์กร (CF) และฝั่งเจ้าหน้าที่ธนาคาร (BF) บน codebase Java / Spring MVC ที่รันในโปรดักชันมาหลายปี",
+        "decision": "ทุกการเปลี่ยนแปลงต้อง “ต่อยอด” โมเดลการอนุมัติและสถานะเดิม ไม่ใช่เขียนทับ เพราะระบบใช้งานจริงอยู่ และแต่ละประเภทบริการมีวงจรชีวิตธุรกรรมของตัวเอง ผมจึงทำงานภายใต้โครงสร้าง Controller–Service–DAO เดิมและใช้ status code ชุดเดิม เพื่อให้พฤติกรรมใหม่ทำงานร่วมกับกฎที่รันอยู่แล้วได้ แทนที่จะเขียนเงื่อนไขพิเศษแยกออกมา",
+        "outcome": "ทุก change request ผ่านกระบวนการ UAT ของธนาคาร มีการติดตามข้อบกพร่องและทดสอบซ้ำ ครอบคลุมทั้งเมนูภาษาไทยและอังกฤษ และทุกประเภทบริการที่เกี่ยวข้อง",
+        "highlights": [
+          "Maker เลือกผู้อนุมัติได้ ครอบคลุมโอนเงิน โอนแบบกลุ่ม ชำระบิล Direct Credit EWHT และ BahtNet",
+          "Roll Over ธุรกรรมที่ตั้งเวลาล่วงหน้าภายในวัน Effective Date (Quartz scheduler)",
+          "ยกเลิกรายการก่อนถึงรอบประมวลผล ครอบคลุมทุกประเภทบริการ",
+          "กำหนดวงเงินอนุมัติแบบแบ่งช่วง และหน้าลงทะเบียนสำหรับกิจการเจ้าของคนเดียว"
+        ],
+        "tags": ["Java", "Spring MVC", "IBM Db2", "Quartz", "JSP"],
+        "image": "gsb-maker-approver",
+        "imageAlt": "แผนผังกระบวนการ maker-approver ของธุรกรรม",
+        "confidential": true,
+        "link": ""
+      },
+      {
+        "name": "Anest — ระบบบันทึกการระงับความรู้สึก (eMR)",
+        "context": "แผนกวิสัญญี โรงพยาบาลพระปกเกล้า บันทึกการประเมินผู้ป่วยก่อน/หลังการระงับความรู้สึกด้วยกระดาษ ระบบที่มาแทนต้องแก้ไขได้ พิมพ์ออกมาได้ และส่งข้อมูลกลับเข้าระบบสารสนเทศโรงพยาบาล (HIS) ได้ พัฒนาเองทั้งระบบระหว่างฝึกงาน",
+        "decision": "มี 2 การตัดสินใจที่กำหนดรูปแบบของระบบ อย่างแรกคือฝั่ง browser จะไม่คุยกับ API ของโรงพยาบาลโดยตรง แต่ผ่าน server-side proxy ที่แนบ credential และคัดกรองพารามิเตอร์ ทำให้ endpoint และ token ปลายทางไม่รั่วไปฝั่ง client อย่างที่สองคือเก็บข้อมูลแต่ละรายการ 2 ชั้น — JSON ดิบเพื่อให้เปิดกลับมาแก้ไขได้ และข้อความที่จัดรูปแบบแล้วสำหรับพิมพ์และส่งเข้า HIS ยอมแลกพื้นที่จัดเก็บเล็กน้อย เพื่อให้ปรับหน้าตาฟอร์มในอนาคตได้โดยไม่กระทบข้อมูลเก่า",
+        "outcome": "ใช้งานจริงในแผนก แทนการบันทึกด้วยกระดาษ ระบบส่งมอบเป็น Docker Compose stack (PHP/Apache + MySQL 8 + phpMyAdmin) ทำให้ติดตั้งซ้ำได้ และมีเวอร์ชัน demo ที่ใช้ข้อมูลจำลองเปิดเป็นโอเพนซอร์ส",
+        "highlights": [
+          "ยืนยันตัวตนด้วย JWT ผ่าน HttpOnly cookies พร้อมสิทธิ์ตามบทบาทและการอนุมัติผู้ใช้ใหม่โดยแอดมิน",
+          "server-side REST proxy ที่ปลอดภัย เชื่อมข้อมูลจากระบบ HIS ของโรงพยาบาล 7 endpoint",
+          "ออกแบบ schema MySQL เก็บข้อมูลทั้งแบบ JSON ดิบและข้อความพร้อมพิมพ์",
+          "จัดเป็นคอนเทนเนอร์ด้วย Docker Compose รันทั้งระบบด้วยคำสั่งเดียว"
+        ],
+        "tags": ["PHP 8", "JavaScript", "MySQL", "JWT", "Docker", "Tailwind CSS"],
+        "image": "anest-dashboard",
+        "imageAlt": "หน้าจอระบบ Anest eMR แสดงรายการข้อมูลผู้ป่วย (ข้อมูลจำลอง)",
+        "confidential": false,
+        "link": "https://github.com/kriangsit-dev/anest-prepost-demo"
+      }
+    ]
+  },
+  "skills": {
+    "title": "ทักษะ",
+    "groups": [
+      {
+        "label": "Backend",
+        "items": ["Java", "Spring MVC", "JDBC", "REST APIs", "JWT", "Quartz", "JSP"]
+      },
+      { "label": "ฐานข้อมูล", "items": ["IBM Db2", "MySQL", "SQL"] },
+      { "label": "Frontend", "items": ["JavaScript", "HTML", "CSS", "Tailwind CSS", "Bootstrap"] },
+      {
+        "label": "DevOps & เครื่องมือ",
+        "items": [
+          "Docker",
+          "Docker Compose",
+          "Git / GitHub",
+          "Eclipse IDE",
+          "VS Code",
+          "DBeaver",
+          "MobaXterm"
+        ]
+      },
+      {
+        "label": "แนวทางการทำงาน",
+        "items": ["Agile", "Object-Oriented Programming", "Code Review"]
+      }
+    ]
+  },
+  "learning": {
+    "title": "กำลังเรียนรู้",
+    "intro": "กำลังต่อยอดจากสาย JVM ไปยัง .NET — โปรเจกต์ถัดไปคือเขียนระบบ approval workflow ขึ้นใหม่ด้วย C#",
+    "items": ["C#", ".NET / ASP.NET Core", "Entity Framework Core", "Clean Architecture", "xUnit"]
+  },
+  "contact": {
+    "title": "ติดต่อ",
+    "intro": "เปิดรับงานตำแหน่ง Java / Backend / Full Stack Developer ในกรุงเทพฯ ทั้งแบบ on-site, hybrid และ remote ทักมาคุยกันได้เลยครับ",
+    "nameLabel": "ชื่อของคุณ",
+    "emailLabel": "อีเมลของคุณ",
+    "messageLabel": "ข้อความ",
+    "send": "ส่งข้อความ",
+    "sending": "กำลังส่ง…",
+    "success": "ขอบคุณครับ ส่งข้อความเรียบร้อยแล้ว เดี๋ยวผมติดต่อกลับโดยเร็ว",
+    "error": "เกิดข้อผิดพลาด รบกวนส่งอีเมลหาผมโดยตรงแทนครับ",
+    "orEmail": "หรือส่งอีเมลหาผมโดยตรงที่"
+  },
+  "footer": {
+    "builtWith": "สร้างด้วย Astro และ Tailwind CSS",
+    "rights": "สงวนลิขสิทธิ์"
+  }
+}

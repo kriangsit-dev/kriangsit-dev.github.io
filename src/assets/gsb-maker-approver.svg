@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-label="Maker-approver transaction flow diagram">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .bx  { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.5; rx:10 }
+      .bxh { fill:#16324f; stroke:#16324f; stroke-width:1.5; rx:10 }
+      .t   { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:13px; fill:#334155; text-anchor:middle }
+      .th  { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:13px; fill:#ffffff; text-anchor:middle }
+      .ttl { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:16px; font-weight:700; fill:#16324f }
+      .sub { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:11.5px; fill:#64748b }
+      .ln  { stroke:#94a3b8; stroke-width:1.5; fill:none; marker-end:url(#arrow) }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text class="ttl" x="30" y="34">Maker–Approver transaction flow</text>
+  <text class="sub" x="30" y="54">Highlighted steps are the features I built</text>
+
+  <!-- Row A -->
+  <rect class="bx"  x="30"  y="80" width="170" height="56"/>
+  <text class="t"   x="115" y="113">Maker</text>
+
+  <rect class="bx"  x="250" y="80" width="170" height="56"/>
+  <text class="t"   x="335" y="113">Create transaction</text>
+
+  <rect class="bxh" x="470" y="80" width="170" height="56"/>
+  <text class="th"  x="555" y="105">Select approver</text>
+  <text class="th"  x="555" y="122" font-size="10.5" opacity="0.8">across all services</text>
+
+  <rect class="bx"  x="690" y="80" width="170" height="56"/>
+  <text class="t"   x="775" y="113">Authorizer</text>
+
+  <path class="ln" d="M200,108 L244,108"/>
+  <path class="ln" d="M420,108 L464,108"/>
+  <path class="ln" d="M640,108 L684,108"/>
+
+  <!-- snake connector: Authorizer -> row B -->
+  <path class="ln" d="M775,136 L775,173 L115,173 L115,204"/>
+
+  <!-- Row B -->
+  <rect class="bxh" x="30"  y="210" width="170" height="56"/>
+  <text class="th"  x="115" y="235">Approval limit</text>
+  <text class="th"  x="115" y="252" font-size="10.5" opacity="0.8">by range</text>
+
+  <rect class="bx"  x="250" y="210" width="170" height="56"/>
+  <text class="t"   x="335" y="243">Approve / reject</text>
+
+  <rect class="bxh" x="470" y="210" width="170" height="56"/>
+  <text class="th"  x="555" y="235">Roll over</text>
+  <text class="th"  x="555" y="252" font-size="10.5" opacity="0.8">scheduled transaction</text>
+
+  <rect class="bxh" x="690" y="210" width="170" height="56"/>
+  <text class="th"  x="775" y="235">Cancel</text>
+  <text class="th"  x="775" y="252" font-size="10.5" opacity="0.8">before processing cutoff</text>
+
+  <path class="ln" d="M200,238 L244,238"/>
+  <path class="ln" d="M420,238 L464,238"/>
+  <path class="ln" d="M640,238 L684,238"/>
+
+  <text class="sub" x="30" y="310">Java · Spring MVC · Quartz scheduler · IBM Db2</text>
+</svg>

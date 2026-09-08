@@ -1,0 +1,172 @@
+{
+  "lang": "en",
+  "cvPath": "/cv/Kriangsit_Pranee_CV.pdf",
+  "meta": {
+    "title": "Kriangsit Pranee — Full Stack Java Developer",
+    "description": "Full Stack Java Developer building enterprise banking and healthcare systems with Java, Spring MVC, IBM Db2 and Docker. Based in Bangkok, Thailand."
+  },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "cv": "Download CV",
+    "switchLang": "ไทย",
+    "switchLangHref": "/th/",
+    "theme": "Toggle theme"
+  },
+  "hero": {
+    "hello": "Hi, I'm",
+    "name": "Kriangsit Pranee",
+    "role": "Full Stack Java Developer",
+    "tagline": "I build and maintain production systems in two tightly regulated domains — corporate internet banking and hospital clinical records.",
+    "location": "Bangkok, Thailand",
+    "available": "Available to start immediately",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch"
+  },
+  "about": {
+    "title": "About",
+    "body": [
+      "Backend-focused Full Stack Java Developer and Computer Science graduate. In 2026 I built features for the Government Savings Bank (GSB) Corporate Internet Banking platform using Java and Spring MVC, working across both the corporate-customer and bank-officer sides of the system.",
+      "Before that, during my internship, I built and shipped a Pre/Post Anesthetic electronic medical record system end to end — now in real use by the anesthesiology department at Phrapokklao Hospital, replacing paper-based records.",
+      "I care about writing clean, reliable code that holds up in production, and I'm currently looking for a Java / Backend or Full Stack Developer role."
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "stackLabel": "Stack",
+    "items": [
+      {
+        "role": "Full Stack Java Developer",
+        "company": "IMAXX Solutions Co., Ltd.",
+        "context": "Corporate Internet Banking (CIB), Government Savings Bank — via MFEC (System Integrator)",
+        "period": "Jan 2026 – Aug 2026",
+        "location": "Bangkok, Thailand · On-site",
+        "bullets": [
+          "Enhanced the maker–approver workflow: maker-selectable approver routing across all financial services, and authorizer roll-over of future-dated (scheduled) transactions using the Quartz scheduler.",
+          "Delivered a transaction-cancellation feature to void any service type that is pending approval, or approved but not yet processed.",
+          "On the bank-officer admin front, built range-based approval-limit configuration and a registration flow supporting single-user (sole-proprietor) accounts.",
+          "Wrote and optimized SQL and managed relational data on IBM Db2 via DBeaver.",
+          "Deployed WAR builds to JBoss/Tomcat and troubleshot production issues via MobaXterm with Log4j2 log analysis.",
+          "Collaborated through GitHub code reviews in a 7-person Agile team, and contributed to requirement analysis, testing and maintenance."
+        ],
+        "stack": "Java · Spring MVC · JDBC · IBM Db2 · JSP · Quartz · GitHub · Eclipse IDE · DBeaver · MobaXterm"
+      },
+      {
+        "role": "Software Developer Intern",
+        "company": "Phrapokklao Hospital",
+        "context": "Pre/Post Anesthetic electronic medical record (eMR) system",
+        "period": "May 2025 – Sep 2025",
+        "location": "Chanthaburi, Thailand · On-site",
+        "bullets": [
+          "Built and deployed a web system replacing paper-based pre- and post-anesthetic assessment records with structured electronic forms — now in real use by the anesthesiology department.",
+          "Integrated the application with the hospital information system (HIS) across seven REST endpoints through a server-side proxy that attached authentication and kept upstream endpoints out of the browser.",
+          "Implemented JWT authentication over HttpOnly cookies with an administrator approval workflow for new accounts and role-based access control.",
+          "Designed a MySQL schema storing each record in two layers — raw JSON for re-editing and rendered text for printing and submission.",
+          "Containerized the stack with Docker Compose for reproducible deployment."
+        ],
+        "stack": "PHP 8 · JavaScript · Tailwind CSS · Bootstrap · MySQL 8 · REST API · JWT · Docker Compose"
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Bachelor of Science in Computer Science",
+    "school": "Rambhai Barni Rajabhat University",
+    "year": "2025"
+  },
+  "projects": {
+    "title": "Projects",
+    "confidentialNote": "Client system — source code and screenshots cannot be shared publicly.",
+    "viewCode": "View code",
+    "labels": {
+      "context": "Context",
+      "approach": "What I built",
+      "decision": "Key decision",
+      "outcome": "Outcome"
+    },
+    "items": [
+      {
+        "name": "GSB Corporate Internet Banking",
+        "context": "A live Corporate Internet Banking platform for a national bank, where every financial transaction passes through a maker–approver flow with per-service approval rules. I worked change requests across both the corporate-customer front (CF) and the bank-officer admin front (BF), inside a Java / Spring MVC codebase that had been in production for years.",
+        "decision": "Every change had to extend the existing approval and status model rather than replace it — the platform is live and each service type has its own transaction lifecycle. I kept the work inside the established Controller–Service–DAO layering and reused the existing status codes, so new behaviour composes with rules already running in production instead of being special-cased.",
+        "outcome": "Each change request went through the bank's UAT cycle, with defects tracked and re-tested across both the Thai and English UI and every affected service type.",
+        "highlights": [
+          "Maker–approver routing across fund transfer, bulk transfer, bill payment, direct credit, EWHT and BahtNet",
+          "Roll-over of future-dated transactions within the effective-date window (Quartz scheduler)",
+          "Transaction cancellation before the processing cutoff, across all service types",
+          "Range-based approval limits and a registration flow for sole-proprietor accounts"
+        ],
+        "tags": ["Java", "Spring MVC", "IBM Db2", "Quartz", "JSP"],
+        "image": "gsb-maker-approver",
+        "imageAlt": "Maker-approver transaction flow diagram",
+        "confidential": true,
+        "link": ""
+      },
+      {
+        "name": "Anest — Pre/Post Anesthetic eMR",
+        "context": "The anesthesiology department at Phrapokklao Hospital recorded pre- and post-anesthetic assessments on paper. The replacement had to be editable by clinicians, printable, and ultimately submitted back into the hospital information system (HIS). Built end to end during my internship.",
+        "decision": "Two decisions shaped the design. The browser never talks to hospital APIs directly — a server-side proxy attaches credentials and whitelists query parameters, so upstream endpoints and tokens are never exposed to the client. And each record is stored twice: raw JSON so a clinician can reopen and edit the form, plus rendered text for printing and HIS submission — trading a little storage for the ability to change the form layout without breaking historical records.",
+        "outcome": "In real use by the department, replacing paper records. Ships as a Docker Compose stack (PHP/Apache + MySQL 8 + phpMyAdmin) so it can be brought up reproducibly; a sanitised demo build with mock data is open source.",
+        "highlights": [
+          "JWT authentication over HttpOnly cookies with role-based access and admin approval of new accounts",
+          "Secure server-side REST proxy integrating hospital HIS data across seven endpoints",
+          "MySQL schema storing each record as raw JSON plus print-ready text",
+          "Dockerized with Docker Compose — one command to run the whole stack"
+        ],
+        "tags": ["PHP 8", "JavaScript", "MySQL", "JWT", "Docker", "Tailwind CSS"],
+        "image": "anest-dashboard",
+        "imageAlt": "Anest eMR dashboard showing the patient record list (demo data)",
+        "confidential": false,
+        "link": "https://github.com/kriangsit-dev/anest-prepost-demo"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills",
+    "groups": [
+      {
+        "label": "Backend",
+        "items": ["Java", "Spring MVC", "JDBC", "REST APIs", "JWT", "Quartz", "JSP"]
+      },
+      { "label": "Databases", "items": ["IBM Db2", "MySQL", "SQL"] },
+      { "label": "Frontend", "items": ["JavaScript", "HTML", "CSS", "Tailwind CSS", "Bootstrap"] },
+      {
+        "label": "DevOps & Tools",
+        "items": [
+          "Docker",
+          "Docker Compose",
+          "Git / GitHub",
+          "Eclipse IDE",
+          "VS Code",
+          "DBeaver",
+          "MobaXterm"
+        ]
+      },
+      { "label": "Practices", "items": ["Agile", "Object-Oriented Programming", "Code Review"] }
+    ]
+  },
+  "learning": {
+    "title": "Currently learning",
+    "intro": "Broadening from the JVM into the .NET ecosystem — my next project is an approval-workflow API rebuilt in C#.",
+    "items": ["C#", ".NET / ASP.NET Core", "Entity Framework Core", "Clean Architecture", "xUnit"]
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Open to Java / Backend / Full Stack Developer roles in Bangkok — on-site, hybrid or remote. Feel free to send a message.",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email",
+    "messageLabel": "Message",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks — your message has been sent. I'll get back to you soon.",
+    "error": "Something went wrong. Please email me directly instead.",
+    "orEmail": "Or email me directly at"
+  },
+  "footer": {
+    "builtWith": "Built with Astro and Tailwind CSS",
+    "rights": "All rights reserved."
+  }
+}

@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import { projectImages } from '../assets/images';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+const L = t.projects.labels;
+---
+
+<Section id="projects" title={t.projects.title}>
+  <div class="space-y-10">
+    {
+      t.projects.items.map((p: any) => (
+        <article class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+          {projectImages[p.image] && (
+            <Image
+              src={projectImages[p.image]}
+              alt={p.imageAlt}
+              widths={[600, 900, 1400]}
+              sizes="(min-width: 896px) 896px, 100vw"
+              loading="lazy"
+              decoding="async"
+              class="w-full border-b border-slate-200 bg-slate-50 object-cover object-top dark:border-slate-800 dark:bg-slate-900"
+            />
+          )}
+
+          <div class="p-6 sm:p-7">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">{p.name}</h3>
+
+            <div class="mt-5 space-y-5">
+              <div>
+                <h4 class="mb-1.5 text-xs font-semibold tracking-wider text-accent-500 uppercase">
+                  {L.context}
+                </h4>
+                <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {p.context}
+                </p>
+              </div>
+
+              <div>
+                <h4 class="mb-1.5 text-xs font-semibold tracking-wider text-accent-500 uppercase">
+                  {L.approach}
+                </h4>
+                <ul class="space-y-2">
+                  {p.highlights.map((h: string) => (
+                    <li class="flex gap-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-400" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="rounded-lg border-l-2 border-brand-400 bg-slate-50 py-3 pr-3 pl-4 dark:bg-slate-900/60">
+                <h4 class="mb-1.5 text-xs font-semibold tracking-wider text-brand-600 uppercase dark:text-brand-400">
+                  {L.decision}
+                </h4>
+                <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {p.decision}
+                </p>
+              </div>
+
+              <div>
+                <h4 class="mb-1.5 text-xs font-semibold tracking-wider text-accent-500 uppercase">
+                  {L.outcome}
+                </h4>
+                <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {p.outcome}
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-1.5">
+              {p.tags.map((tag: string) => (
+                <span class="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div class="mt-5">
+              {p.confidential ? (
+                <p class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400">
+                  <svg
+                    class="mt-px h-4 w-4 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <rect x="4" y="10" width="16" height="10" rx="2" />
+                    <path d="M8 10V7a4 4 0 1 1 8 0v3" />
+                  </svg>
+                  <span>{t.projects.confidentialNote}</span>
+                </p>
+              ) : (
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-600 hover:underline dark:text-brand-400"
+                >
+                  {t.projects.viewCode}
+                  <svg
+                    class="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 17 17 7M9 7h8v8" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

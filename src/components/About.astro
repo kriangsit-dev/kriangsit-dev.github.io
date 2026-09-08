@@ -1,0 +1,24 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<Section id="about" title={t.about.title}>
+  <div class="space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
+    {t.about.body.map((p: string) => <p>{p}</p>)}
+  </div>
+
+  <div class="mt-8 rounded-xl border border-slate-200 p-5 dark:border-slate-800">
+    <h3 class="text-sm font-semibold tracking-wide text-slate-500 uppercase dark:text-slate-400">
+      {t.education.title}
+    </h3>
+    <p class="mt-2 font-medium text-slate-800 dark:text-slate-200">{t.education.degree}</p>
+    <p class="text-sm text-slate-600 dark:text-slate-400">
+      {t.education.school} · {t.education.year}
+    </p>
+  </div>
+</Section>

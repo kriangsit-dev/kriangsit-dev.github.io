@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config';
+import profilePhoto from '../assets/profile.jpg';
+
+interface Props {
+  t: any;
+  lang: string;
+}
+
+const { t, lang } = Astro.props;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  jobTitle: 'Full Stack Java Developer',
+  email: `mailto:${SITE.email}`,
+  url: 'https://kriangsit-dev.github.io',
+  image: `https://kriangsit-dev.github.io${profilePhoto.src}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Bangkok',
+    addressCountry: 'TH',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Rambhai Barni Rajabhat University',
+  },
+  knowsAbout: ['Java', 'Spring MVC', 'IBM Db2', 'REST APIs', 'PHP', 'MySQL', 'Docker'],
+  sameAs: [SITE.github, SITE.linkedin],
+};
+const base = Astro.site ?? new URL('http://localhost:4321');
+const canonical = new URL(Astro.url.pathname, base).toString();
+const ogImage = new URL('/og-image.png', base).toString();
+const hrefEn = new URL('/', base).toString();
+const hrefTh = new URL('/th/', base).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="alternate" hreflang="en" href={hrefEn} />
+    <link rel="alternate" hreflang="th" href={hrefTh} />
+    <link rel="alternate" hreflang="x-default" href={hrefEn} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'th' ? 'th_TH' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    {/* ตั้งธีมก่อนหน้าจอวาด กัน flash สีขาวตอนโหลด */}
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const dark = stored
+            ? stored === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
+  </head>
+
+  <body
+    class="min-h-screen bg-white font-sans text-slate-700 antialiased dark:bg-slate-950 dark:text-slate-300"
+  >
+    <a
+      href="#main"
+      class="sr-only rounded-lg bg-brand-700 px-4 py-2 text-white focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-100"
+    >
+      {lang === 'th' ? 'ข้ามไปยังเนื้อหาหลัก' : 'Skip to main content'}
+    </a>
+    <slot />
+  </body>
+</html>

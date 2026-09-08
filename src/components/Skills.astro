@@ -1,0 +1,29 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<Section id="skills" title={t.skills.title}>
+  <div class="space-y-6">
+    {
+      t.skills.groups.map((g: any) => (
+        <div class="sm:grid sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-6">
+          <h3 class="mb-2 text-sm font-semibold text-brand-600 sm:mb-0 dark:text-brand-400">
+            {g.label}
+          </h3>
+          <div class="flex flex-wrap gap-1.5">
+            {g.items.map((item: string) => (
+              <span class="rounded-md border border-slate-200 px-2.5 py-1 text-sm text-slate-700 dark:border-slate-700 dark:text-slate-300">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section>

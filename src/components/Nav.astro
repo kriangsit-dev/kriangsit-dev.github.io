@@ -1,0 +1,121 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+
+const links = [
+  { href: '#about', label: t.nav.about },
+  { href: '#experience', label: t.nav.experience },
+  { href: '#projects', label: t.nav.projects },
+  { href: '#skills', label: t.nav.skills },
+  { href: '#contact', label: t.nav.contact },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur dark:border-slate-800 dark:bg-slate-950/85"
+>
+  <nav
+    aria-label={t.nav.about}
+    class="mx-auto flex max-w-4xl items-center justify-between gap-4 px-5 py-3"
+  >
+    <a href="#top" class="font-semibold tracking-tight text-brand-700 dark:text-white">
+      Kriangsit<span class="text-accent-500">.</span>
+    </a>
+
+    <ul class="hidden items-center gap-6 text-sm md:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="text-slate-600 transition hover:text-brand-600 dark:text-slate-300 dark:hover:text-white"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={t.nav.switchLangHref}
+        class="inline-flex h-9 items-center rounded-lg border border-slate-200 px-2.5 text-xs font-medium text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+      >
+        {t.nav.switchLang}
+      </a>
+
+      <ThemeToggle label={t.nav.theme} />
+
+      <a
+        href={t.cvPath}
+        download
+        class="hidden h-9 items-center rounded-lg bg-brand-700 px-3.5 text-xs font-medium text-white transition hover:bg-brand-600 sm:inline-flex"
+      >
+        {t.nav.cv}
+      </a>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-label="Menu"
+        aria-expanded="false"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 md:hidden dark:border-slate-700 dark:text-slate-300"
+      >
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-slate-200 px-5 py-3 md:hidden dark:border-slate-800"
+  >
+    <ul class="flex flex-col gap-3 text-sm">
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="block text-slate-600 dark:text-slate-300">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={t.cvPath} download class="block font-medium text-brand-600 dark:text-brand-400">
+          {t.nav.cv}
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

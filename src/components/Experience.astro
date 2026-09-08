@@ -1,0 +1,47 @@
+---
+import Section from './Section.astro';
+
+interface Props {
+  t: any;
+}
+const { t } = Astro.props;
+---
+
+<Section id="experience" title={t.experience.title}>
+  <ol class="relative space-y-10 border-l border-slate-200 pl-6 dark:border-slate-800">
+    {
+      t.experience.items.map((job: any) => (
+        <li class="relative">
+          <span class="absolute top-1.5 -left-[1.72rem] h-3 w-3 rounded-full border-2 border-white bg-brand-500 dark:border-slate-950" />
+
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white">{job.role}</h3>
+            <span class="text-sm whitespace-nowrap text-slate-500 dark:text-slate-400">
+              {job.period}
+            </span>
+          </div>
+
+          <p class="mt-0.5 font-medium text-brand-600 dark:text-brand-400">{job.company}</p>
+          <p class="mt-1 text-sm text-slate-500 italic dark:text-slate-400">{job.context}</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">{job.location}</p>
+
+          <ul class="mt-4 space-y-2">
+            {job.bullets.map((b: string) => (
+              <li class="flex gap-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-400" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">
+            <span class="font-semibold text-brand-600 dark:text-brand-400">
+              {t.experience.stackLabel}:
+            </span>{' '}
+            {job.stack}
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>
