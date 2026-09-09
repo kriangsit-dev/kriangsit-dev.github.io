@@ -3,7 +3,7 @@
   "cvPath": "/cv/Kriangsit_Pranee_CV.pdf",
   "meta": {
     "title": "Kriangsit Pranee — Full Stack Java Developer",
-    "description": "Full Stack Java Developer building enterprise banking and healthcare systems with Java, Spring MVC, IBM Db2 and Docker. Based in Bangkok, Thailand."
+    "description": "Full Stack Java Developer building enterprise banking and healthcare systems with Java, Spring MVC, IBM Db2 and Docker — and APIs in C# / ASP.NET Core. Bangkok, Thailand."
   },
   "nav": {
     "about": "About",
@@ -121,6 +121,32 @@
         "imageAlt": "Anest eMR dashboard showing the patient record list (demo data)",
         "confidential": false,
         "link": "https://github.com/kriangsit-dev/anest-prepost-demo"
+      },
+      {
+        "name": "Ledger API — double-entry accounting service",
+        "context": "Working on a banking platform taught me that the hard part of moving money is not the write itself — it is what happens when the same write arrives twice, when two requests race, and when a wrong entry has to be corrected without erasing history. I built this in C# and ASP.NET Core to tackle those problems directly, and to move into .NET properly rather than by tutorial.",
+        "decision": "Balances are never stored. An account has no balance column; a balance is summed from its journal lines, which removes the lost-update race by construction rather than guarding against it. Idempotency is likewise pushed down to the database: a reservation row keyed on (endpoint, Idempotency-Key) means PostgreSQL decides which of two simultaneous retries proceeds — a check-then-insert in application code would still lose that race. Corrections are reversing entries, never updates or deletes, so history stays replayable for an auditor.",
+        "outcome": "52 tests, green in CI. The integration suite runs against a real PostgreSQL container rather than an in-memory provider, because the guarantee depends on an actual unique-constraint violation. It was that suite that caught a bug where the request fingerprint was silently hashing an empty stream — the protection looked like it worked and did nothing.",
+        "highlights": [
+          "Eight simultaneous retries with one Idempotency-Key create exactly one entry — asserted, not assumed",
+          "Debits must equal credits; decimal and numeric(19,4) end to end, never floating point",
+          "Reversal instead of update or delete, with both entries pointing at each other",
+          "Trial balance nets to zero after randomised postings — one assertion that catches almost any posting bug",
+          "CI fails the build on a dependency with a published CVE, not just on a failing test"
+        ],
+        "tags": [
+          "C#",
+          ".NET 10",
+          "ASP.NET Core",
+          "EF Core",
+          "PostgreSQL",
+          "xUnit",
+          "Testcontainers"
+        ],
+        "image": "ledger-idempotency",
+        "imageAlt": "Diagram: two simultaneous retries with the same Idempotency-Key result in exactly one journal entry",
+        "confidential": false,
+        "link": "https://github.com/kriangsit-dev/ledger-api"
       }
     ]
   },
@@ -150,8 +176,14 @@
   },
   "learning": {
     "title": "Currently learning",
-    "intro": "Broadening from the JVM into the .NET ecosystem — my next project is an approval-workflow API rebuilt in C#.",
-    "items": ["C#", ".NET / ASP.NET Core", "Entity Framework Core", "Clean Architecture", "xUnit"]
+    "intro": "Broadening from the JVM into the .NET ecosystem. The Ledger API above is the first thing I built with it — end to end, with tests and CI rather than a tutorial.",
+    "items": [
+      "C#",
+      ".NET / ASP.NET Core",
+      "Entity Framework Core",
+      "PostgreSQL",
+      "xUnit & Testcontainers"
+    ]
   },
   "contact": {
     "title": "Contact",

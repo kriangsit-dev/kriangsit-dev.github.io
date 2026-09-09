@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 
 import anestDashboard from './anest-dashboard.webp';
 import gsbMakerApprover from './gsb-maker-approver.svg';
+import ledgerIdempotency from './ledger-idempotency.svg';
 
 /**
  * ทะเบียนรูปของโปรเจกต์
@@ -12,4 +13,5 @@ import gsbMakerApprover from './gsb-maker-approver.svg';
 export const projectImages: Record<string, ImageMetadata> = {
   'anest-dashboard': anestDashboard,
   'gsb-maker-approver': gsbMakerApprover,
+  'ledger-idempotency': ledgerIdempotency,
 };

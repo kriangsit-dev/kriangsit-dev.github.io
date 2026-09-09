@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" role="img" aria-label="Diagram: two simultaneous retries with the same Idempotency-Key result in exactly one journal entry">
+  <defs>
+    <marker id="arrow-ledger" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .bx  { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.5; rx:10 }
+      .bxh { fill:#16324f; stroke:#16324f; stroke-width:1.5; rx:10 }
+      .t   { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:13px; fill:#334155; text-anchor:middle }
+      .th  { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:13px; fill:#ffffff; text-anchor:middle }
+      .ts  { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:10.5px; fill:#64748b; text-anchor:middle }
+      .ths { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:10.5px; fill:#ffffff; text-anchor:middle; opacity:0.82 }
+      .ttl { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:16px; font-weight:700; fill:#16324f }
+      .sub { font-family: Inter, "Segoe UI", Arial, sans-serif; font-size:11.5px; fill:#64748b }
+      .ln  { stroke:#94a3b8; stroke-width:1.5; fill:none; marker-end:url(#arrow-ledger) }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="340" rx="14" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text class="ttl" x="30" y="34">Idempotent write — one entry, however many retries</text>
+  <text class="sub" x="30" y="54">Two POSTs arrive at the same moment carrying the same Idempotency-Key</text>
+
+  <!-- incoming retries -->
+  <rect class="bx" x="30" y="90" width="190" height="52"/>
+  <text class="t"  x="125" y="112">Retry #1</text>
+  <text class="ts" x="125" y="129">Idempotency-Key: 8f14e45f</text>
+
+  <rect class="bx" x="30" y="176" width="190" height="52"/>
+  <text class="t"  x="125" y="198">Retry #2</text>
+  <text class="ts" x="125" y="215">same key, same body</text>
+
+  <!-- the database decides -->
+  <rect class="bxh" x="280" y="118" width="200" height="80"/>
+  <text class="th"  x="380" y="150">INSERT reservation</text>
+  <text class="ths" x="380" y="169">primary key</text>
+  <text class="ths" x="380" y="184">(endpoint, key)</text>
+
+  <path class="ln" d="M220,116 L250,116 L250,145 L274,145"/>
+  <path class="ln" d="M220,202 L250,202 L250,172 L274,172"/>
+
+  <!-- outcomes -->
+  <rect class="bx" x="545" y="90" width="325" height="52"/>
+  <text class="t"  x="707" y="112">One INSERT succeeds</text>
+  <text class="ts" x="707" y="129">posts the entry → 201 Created</text>
+
+  <rect class="bx" x="545" y="176" width="325" height="52"/>
+  <text class="t"  x="707" y="198">The other hits a unique violation</text>
+  <text class="ts" x="707" y="215">replays the stored response — no second posting</text>
+
+  <path class="ln" d="M480,145 L512,145 L512,116 L539,116"/>
+  <path class="ln" d="M480,172 L512,172 L512,202 L539,202"/>
+
+  <!-- result -->
+  <rect class="bxh" x="280" y="228" width="200" height="48"/>
+  <text class="th"  x="380" y="258">Exactly one entry</text>
+
+  <path class="ln" d="M380,198 L380,222"/>
+
+  <text class="sub" x="30" y="318">ASP.NET Core · PostgreSQL · proven by an integration test firing 8 retries at once</text>
+</svg>

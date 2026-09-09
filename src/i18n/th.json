@@ -3,7 +3,7 @@
   "cvPath": "/cv/Kriangsit_Pranee_CV_TH.pdf",
   "meta": {
     "title": "เกรียงสิทธิ์ ปราณี — Full Stack Java Developer",
-    "description": "Full Stack Java Developer พัฒนาระบบธนาคารและระบบโรงพยาบาลด้วย Java, Spring MVC, IBM Db2 และ Docker ทำงานอยู่ที่กรุงเทพฯ"
+    "description": "Full Stack Java Developer พัฒนาระบบธนาคารและระบบโรงพยาบาลด้วย Java, Spring MVC, IBM Db2 และ Docker พร้อมเขียน API ด้วย C# / ASP.NET Core ทำงานอยู่ที่กรุงเทพฯ"
   },
   "nav": {
     "about": "เกี่ยวกับผม",
@@ -121,6 +121,32 @@
         "imageAlt": "หน้าจอระบบ Anest eMR แสดงรายการข้อมูลผู้ป่วย (ข้อมูลจำลอง)",
         "confidential": false,
         "link": "https://github.com/kriangsit-dev/anest-prepost-demo"
+      },
+      {
+        "name": "Ledger API — ระบบบัญชีแยกประเภทแบบสองด้าน",
+        "context": "การทำงานกับระบบธนาคารทำให้เห็นว่าส่วนที่ยากของการโอนเงินไม่ใช่การเขียนข้อมูลลงฐานข้อมูล แต่คือ จะทำอย่างไรเมื่อคำสั่งเดิมถูกส่งมาซ้ำ เมื่อสองคำขอชนกันพอดี และเมื่อรายการที่ลงผิดต้องถูกแก้โดยไม่ลบประวัติทิ้ง ผมจึงเขียนระบบนี้ด้วย C# และ ASP.NET Core เพื่อจัดการปัญหาเหล่านี้ตรง ๆ และเพื่อเข้าสู่ .NET แบบทำของจริง ไม่ใช่แค่ทำตามบทเรียน",
+        "decision": "ระบบไม่เก็บยอดคงเหลือไว้เลย บัญชีไม่มีคอลัมน์ balance แต่คำนวณจากรายการย่อยทุกครั้ง ซึ่งตัดปัญหา lost update ทิ้งตั้งแต่การออกแบบ แทนที่จะมาคอยป้องกันทีหลัง ส่วน idempotency ก็ผลักลงไปให้ฐานข้อมูลตัดสิน โดยใช้แถวจอง key ที่มี primary key เป็น (endpoint, Idempotency-Key) ทำให้ PostgreSQL เป็นผู้ชี้ขาดว่าคำขอไหนได้ไปต่อ — ถ้าเขียนเป็น if-check ในโค้ดจะยังแพ้ race อยู่ดี และการแก้รายการผิดใช้วิธีลงรายการกลับด้าน ไม่มี update หรือ delete ประวัติจึงย้อนดูได้ครบสำหรับผู้ตรวจสอบ",
+        "outcome": "มีเทสต์ 52 ตัว ผ่านทั้งหมดบน CI โดย integration test รันกับ PostgreSQL container จริง ไม่ใช่ in-memory เพราะการรับประกันเรื่องนี้ขึ้นอยู่กับ unique constraint ของฐานข้อมูลจริง ๆ และชุดเทสต์นี้เองที่จับบั๊กได้ว่า การคำนวณลายนิ้วมือของ request กำลัง hash สตรีมเปล่า — ฟีเจอร์ป้องกันดูเหมือนทำงาน แต่จริง ๆ ไม่ได้ป้องกันอะไรเลย",
+        "highlights": [
+          "ยิงซ้ำพร้อมกัน 8 ครั้งด้วย Idempotency-Key เดียว เกิดรายการเดียว — พิสูจน์ด้วยเทสต์ ไม่ใช่แค่เชื่อว่าได้",
+          "เดบิตต้องเท่ากับเครดิต ใช้ decimal และ numeric(19,4) ตลอดทาง ไม่ใช้ floating point",
+          "แก้รายการผิดด้วยการลงกลับด้าน ไม่ใช่ update/delete และรายการทั้งคู่ชี้ถึงกัน",
+          "งบทดลอง (trial balance) ต้องเป็นศูนย์หลังสุ่มลงรายการ — assertion เดียวที่จับบั๊กการลงบัญชีได้แทบทุกแบบ",
+          "CI ทำให้ build fail เมื่อ dependency มีช่องโหว่ที่ประกาศแล้ว ไม่ใช่แค่ตอนเทสต์ไม่ผ่าน"
+        ],
+        "tags": [
+          "C#",
+          ".NET 10",
+          "ASP.NET Core",
+          "EF Core",
+          "PostgreSQL",
+          "xUnit",
+          "Testcontainers"
+        ],
+        "image": "ledger-idempotency",
+        "imageAlt": "แผนผัง: คำขอซ้ำสองครั้งพร้อมกันด้วย Idempotency-Key เดียวกัน ได้ผลลัพธ์เป็นรายการเดียว",
+        "confidential": false,
+        "link": "https://github.com/kriangsit-dev/ledger-api"
       }
     ]
   },
@@ -153,8 +179,14 @@
   },
   "learning": {
     "title": "กำลังเรียนรู้",
-    "intro": "กำลังต่อยอดจากสาย JVM ไปยัง .NET — โปรเจกต์ถัดไปคือเขียนระบบ approval workflow ขึ้นใหม่ด้วย C#",
-    "items": ["C#", ".NET / ASP.NET Core", "Entity Framework Core", "Clean Architecture", "xUnit"]
+    "intro": "กำลังต่อยอดจากสาย JVM ไปยัง .NET โดย Ledger API ด้านบนคือโปรเจกต์แรกที่เขียนด้วย C# ทำครบตั้งแต่ออกแบบจนถึงเทสต์และ CI ไม่ใช่แค่ทำตามบทเรียน",
+    "items": [
+      "C#",
+      ".NET / ASP.NET Core",
+      "Entity Framework Core",
+      "PostgreSQL",
+      "xUnit & Testcontainers"
+    ]
   },
   "contact": {
     "title": "ติดต่อ",
